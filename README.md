@@ -15,3 +15,11 @@ Once the project is running, you can access the following URLs:
 - App: https://localhost
 - Adminer: http://localhost:8081
 - Mailpit: http://localhost:8025
+
+## SSH to container
+
+To get a shell inside the container (eg. to run `bin/console` commands), run the following command:
+
+```bash
+docker composer exec php sh
+```
