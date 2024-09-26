@@ -20,6 +20,9 @@ docker compose exec php sh -c "php bin/console doctrine:fixtures:load"
 php bin/console doctrine:fixtures:load
 ```
 
+BE AWARE: This will load the fixtures in the database, which means that the exchange rates will be set to the values defined in the `CurrencyExchangeRateFixtures`
+class as opposed to the real-time exchange rates which have been loaded automatically after the migrations ran. This however can still be updated later.
+
 Once the project is running, you can access the following URLs:
 
 - App: https://localhost

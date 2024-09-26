@@ -1,0 +1,37 @@
+<div {{ attributes }}>
+    <div class="mb-3">
+        <h3>Convert from:</h3>
+        <div class="row">
+            <div class="col-2">
+                <select name="from_currency_code" class="form-select" data-model="on(change)|fromCurrencyCode">
+                    {% for currencyCode in supportedCurrencies %}
+                        <option value="{{ currencyCode }}">{{ currencyCode }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                <input type="number" class="form-control" name="amount" placeholder="Amount" data-model="debounce(100)|amount">
+            </div>
+        </div>
+    </div>
+
+    {% if this.convertedCurrencies %}
+        <h3>Converted:</h3>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Currency</th>
+                    {% for currency in this.convertedCurrencies %}
+                        <td>{{ currency.currency }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    {% for currency in this.convertedCurrencies %}
+                        <td>{{ currency.amount|format_currency(currency.currency) }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+</div>

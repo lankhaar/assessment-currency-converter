@@ -12,10 +12,12 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous"
         >
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
+		
+		{{ encore_entry_script_tags('app') }}
 	</head>
 	<body>
 		{% include 'layout/main_navigation.html.twig' %}
@@ -28,14 +30,11 @@
                     </div>
                 {% endfor %}
             {% endfor %}
-        </div>
-    
+        </div>    
 
 		{% block body %}{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-			
+		{% block javascripts %}			
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 		{% endblock %}
 	</body>

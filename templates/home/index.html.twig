@@ -4,6 +4,10 @@
 
 {% block body %}
     <div class="container">
-        <h1>Currency Converter</h1>
+        {{ component('CurrencyConverter', {
+            'amount': 1,
+            'supportedCurrencies': currencyCodes,
+            'fromCurrencyCode': currencyCodes|first,
+        }) }}
     </div>
 {% endblock %}
