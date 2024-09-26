@@ -41,7 +41,10 @@ class CurrencyExchangeService
                     $rateToImport = strtolower($rateToImport);
 
                     if (!array_key_exists($rateToImport, $exchangeRates)) {
-                        $this->logger->error('Unsupported currency code: {currencyCode}', ['currencyCode' => $rateToImport]);
+                        if ($rateToImport !== strtolower($currencyCode)) {
+                            $this->logger->error('Unsupported currency code: {currencyCode}', ['currencyCode' => $rateToImport]);
+                        }
+
                         continue;
                     }
 

@@ -20,4 +20,13 @@ class AllowedIpRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AllowedIp::class);
     }
+
+    public function createAllowedIp(string $ip): void
+    {
+        $allowedIp = new AllowedIp();
+        $allowedIp->setIp($ip);
+
+        $this->getEntityManager()->persist($allowedIp);
+        $this->getEntityManager()->flush();
+    }
 }
