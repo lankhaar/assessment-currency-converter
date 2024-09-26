@@ -1,4 +1,8 @@
 parameters:
+    app.allowed_ips:
+        # Local IPs
+        - '192.168.1.0/24'
+        - '172.29.0.0/24'
 
 services:
     _defaults:
@@ -15,3 +19,7 @@ services:
     App\DataFixtures\:
         resource: '../fixtures/'
         tags: ['doctrine.fixture.orm']
+
+    App\Security\IpRestrictionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
