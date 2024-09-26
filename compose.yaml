@@ -45,9 +45,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME:-app}
-      MYSQL_USER: ${DATABASE_USER:-app}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD:-app}
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - mysql_data:/var/lib/mysql:rw
 ###< doctrine/doctrine-bundle ###

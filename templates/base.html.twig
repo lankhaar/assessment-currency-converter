@@ -20,6 +20,17 @@
 	<body>
 		{% include 'layout/main_navigation.html.twig' %}
 
+        <div class="container">
+            {% for messageType, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ messageType }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    
+
 		{% block body %}{% endblock %}
 
 		{% block javascripts %}
