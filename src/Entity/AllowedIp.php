@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\AllowedIpRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AllowedIpRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: AllowedIpRepository::class)]
 class AllowedIp
@@ -14,7 +16,22 @@ class AllowedIp
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $ip = null;
+
+    #[Assert\Callback]
+    public function validate(ExecutionContextInterface $context) {
+        $ip = $this->getIp();
+        if (null === $ip || '' === $ip) {
+            return;
+        }
+
+        if (preg_match('/^(\d{1,3}\.?){4}(\/\d{1,2})?$/', $ip, $matches) !== 1) {
+            $context->buildViolation('The ip must be a valid ip address or ip subnet.')
+                ->setParameter('{{ value }}', $ip)
+                ->addViolation();
+        }
+    }
 
     public function getId(): ?int
     {
