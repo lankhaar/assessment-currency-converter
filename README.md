@@ -87,6 +87,9 @@ To run the tests, run the following command:
 
 ## Manage the application
 
+The application can be managed from the admin area, found at https://yourdomain.com/admin. Besides that, you can also fully manage the application using the command line.
+This is especially usefull when initially setting up your application as you'll have to create an admin user via the command line before you even have access to the admin panel.
+
 ### User Management Commands
 
 #### Add a User
