@@ -1,8 +1,8 @@
 parameters:
     app.allowed_ips:
         # Local IPs
-        - '192.168.1.0/24'
-        - '172.29.0.0/24'
+        - '192.168.0.0/16'
+        - '172.17.0.0/16'
 
 services:
     _defaults:

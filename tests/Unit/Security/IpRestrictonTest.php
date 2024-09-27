@@ -3,6 +3,7 @@
 namespace App\Tests\Unit\Authentication;
 
 use App\Entity\AllowedIp;
+use Psr\Log\LoggerInterface;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use App\Repository\AllowedIpRepository;
@@ -25,6 +26,7 @@ class IpRestrictonTest extends TestCase
         $this->constructorArgs = [
             $this->allowedIpsConfig, 
             $this->allowedIpRepository = $this->createMock(AllowedIpRepository::class),
+            $this->createMock(LoggerInterface::class),
         ];
         $this->ipRestrictionListener = new IpRestrictionListener(...$this->constructorArgs);
     }

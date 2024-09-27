@@ -30,6 +30,13 @@ docker compose up
 
 NOTE: This command could potentially take a while to finish on initial run as it'll have to install the dependencies, create a database and build the project.
 
+After the project is running, you should compile the assets:
+
+```bash
+npm ci
+npm run build
+```
+
 Now you can optionally run the following command to load the fixtures:
 
 ```bash
@@ -49,6 +56,8 @@ Once the project is running, you can access the following URLs:
 - App admin: https://localhost/admin
 - Adminer: http://localhost:8081
 - Mailpit: http://localhost:8025
+
+Be aware that the application is protected by IP restrictions, if you want to access it from outside your current network, you'll have to add your IP address to the list of allowed IP addresses.
 
 If you chose to load the fixtures, you can login with the following credentials:
 

@@ -6,6 +6,7 @@ namespace App\Security;
 
 use App\Entity\AllowedIp;
 use App\Repository\AllowedIpRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -15,7 +16,8 @@ class IpRestrictionListener
     public function __construct(
         #[Autowire('%app.allowed_ips%')]
         private readonly array $allowedIps,
-        private readonly AllowedIpRepository $allowedIpRepository
+        private readonly AllowedIpRepository $allowedIpRepository,
+        private readonly LoggerInterface $logger
     ) {
     }
 
@@ -38,6 +40,8 @@ class IpRestrictionListener
                 return;
             }
         }
+
+        $this->logger->warning('Access denied for IP address {ip}', ['ip' => $clientIp]);
 
         throw new AccessDeniedHttpException('Access denied for your IP address.');
     }
